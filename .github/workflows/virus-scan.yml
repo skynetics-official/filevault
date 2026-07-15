@@ -1,1 +1,29 @@
+name: Проверка файлов на вирусы
 
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'files/**'
+  workflow_dispatch:
+
+jobs:
+  clamav-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Установить ClamAV
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clamav
+          sudo freshclam --quiet || true
+
+      - name: Просканировать папку files/
+        run: |
+          if [ -d "files" ]; then
+            clamscan -r --infected --no-summary files/ && echo "Вирусов не найдено ✅" || (echo "⚠️ Обнаружен подозрительный файл!" && exit 1)
+          else
+            echo "Папка files/ не найдена, пропускаю"
+          fi
