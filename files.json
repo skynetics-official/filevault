@@ -1,6 +1,12 @@
 {
-  "generatedAt": "2026-07-15T19:10:17.323Z",
+  "generatedAt": "2026-07-16T07:55:37.857Z",
   "files": [
+    {
+      "name": "zapret-2.0.0-beta-0.2.zip",
+      "path": "files/zapret-2.0.0-beta-0.2.zip",
+      "size": 1503906,
+      "modified": "2026-07-16T10:55:23+03:00"
+    },
     {
       "name": "zapret-2.0.0Beta.zip",
       "path": "files/zapret-2.0.0Beta.zip",
