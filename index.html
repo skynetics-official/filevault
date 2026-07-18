@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="FileVault — личное хранилище файлов">
+  <title>FileVault — личное хранилище файлов</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#" aria-label="FileVault — на главную">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-mark-core"></span>
+        </span>
+        <span class="brand-copy">
+          <strong>FileVault</strong>
+          <small>Личное хранилище</small>
+        </span>
+      </a>
+      <div class="status-pill"><span class="status-dot"></span>Хранилище доступно</div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="pageTitle">
+      <div class="eyebrow"><span></span>Приватная коллекция</div>
+      <h1 id="pageTitle">Все нужные файлы<br><em>в одном месте.</em></h1>
+      <p>Быстрый доступ к актуальным версиям. Найдите нужный файл и скачайте его в один клик.</p>
+
+      <div class="stats" aria-label="Статистика хранилища">
+        <div class="stat">
+          <span class="stat-icon" aria-hidden="true">▤</span>
+          <span><strong id="fileCount">—</strong><small>файлов</small></span>
+        </div>
+        <div class="stat">
+          <span class="stat-icon" aria-hidden="true">◫</span>
+          <span><strong id="totalSize">—</strong><small>общий объём</small></span>
+        </div>
+        <div class="stat">
+          <span class="stat-icon" aria-hidden="true">↻</span>
+          <span><strong id="updatedDate">—</strong><small>обновлено</small></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="vault-card" aria-labelledby="filesTitle">
+      <div class="card-top">
+        <div>
+          <h2 id="filesTitle">Файлы</h2>
+          <p id="resultSummary">Загружаем содержимое хранилища…</p>
+        </div>
+        <label class="search-box">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span class="sr-only">Поиск файлов</span>
+          <input type="search" id="searchInput" placeholder="Поиск по названию или папке" autocomplete="off">
+          <kbd>⌘ K</kbd>
+        </label>
+      </div>
+
+      <div class="table-head" aria-hidden="true">
+        <span>Название</span><span>Размер</span><span>Дата</span><span></span>
+      </div>
+      <div id="fileList" class="file-list" aria-live="polite">
+        <div class="loading"><span class="spinner"></span>Открываем хранилище…</div>
+      </div>
+      <div id="emptyState" class="empty-state" hidden>
+        <span class="empty-icon" aria-hidden="true">⌕</span>
+        <h3>Ничего не найдено</h3>
+        <p>Попробуйте изменить поисковый запрос.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><span class="footer-mark"></span><strong>FileVault</strong></div>
+    <p>Список файлов обновляется автоматически · <span id="lastUpdated">—</span></p>
+  </footer>
+
+  <dialog id="reviewDialog" class="review-dialog">
+    <form method="dialog" class="dialog-shell" id="reviewForm">
+      <button class="dialog-close" value="cancel" aria-label="Закрыть">×</button>
+      <span class="dialog-label">Отзывы пользователей</span>
+      <h2 id="reviewFileName">Отзыв о файле</h2>
+      <p class="dialog-note">Поставьте оценку и поделитесь впечатлением. Один отзыв на пользователя.</p>
+      <div class="rating" role="radiogroup" aria-label="Оценка">
+        <button type="button" data-rating="1" aria-label="1 звезда">★</button>
+        <button type="button" data-rating="2" aria-label="2 звезды">★</button>
+        <button type="button" data-rating="3" aria-label="3 звезды">★</button>
+        <button type="button" data-rating="4" aria-label="4 звезды">★</button>
+        <button type="button" data-rating="5" aria-label="5 звёзд">★</button>
+      </div>
+      <label class="review-field">
+        <span>Комментарий</span>
+        <textarea id="reviewText" maxlength="500" rows="4" placeholder="Например: всё работает, версия стабильная"></textarea>
+      </label>
+      <div class="dialog-actions">
+        <button type="button" class="review-delete" id="deleteReview">Удалить отзыв</button>
+        <button type="submit" class="review-save" value="default">Сохранить</button>
+      </div>
+      <p class="review-status" id="reviewStatus" role="status"></p>
+      <section class="community-reviews" aria-labelledby="communityTitle">
+        <h3 id="communityTitle">Все отзывы</h3>
+        <div id="communityReviews" class="community-list"><p>Загружаем отзывы…</p></div>
+      </section>
+    </form>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
